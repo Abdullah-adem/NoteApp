@@ -27,6 +27,22 @@ const addNote = (t,n) => {
 
 }
 
+const addNoteToLocalStorage = (note) => {
+ if (note.length< 0){
+    return;
+ }
+ let oldNote;
+ if (localStorage.getItem(notes) === null){
+    oldNote=[];
+ }else{
+    oldNote =JSON.parse(localStorage.getItem("notes"));
+ }
+
+ oldNote.push(note);
+
+ localStorage.setItem('notes', JSON.stringify(oldNote));
+}
+
 noteArea.addEventListener("click", showNoteArea);
 
 document.addEventListener('click',(event)=>{
@@ -38,6 +54,7 @@ document.addEventListener('click',(event)=>{
        if(title.value.length === 0 && noteText.value.length ===0){
          return;
        }else{
+        addNoteToLocalStorage([title.value, noteText.value])
         addNote(title.value, noteText.value);
        } 
     }
@@ -58,3 +75,6 @@ document.addEventListener("click",(event)=>{
         event.target.parentElement.remove();
     }
 });
+
+
+
