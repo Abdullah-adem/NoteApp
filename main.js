@@ -53,3 +53,8 @@ document.addEventListener("mouseout",(event)=>{
         event.target.querySelector("i").classList.remove("show");
     }
 });
+document.addEventListener("click",(event)=>{
+    if(event.target.classList.contains("fa-trash")){
+        event.target.parentElement.remove();
+    }
+});
