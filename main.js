@@ -39,11 +39,17 @@ document.addEventListener('click',(event)=>{
          return;
        }else{
         addNote(title.value, noteText.value);
-       }
-      
-
-
-
-       
+       } 
     }
-})
+});
+
+document.addEventListener("mouseover",(event)=>{
+    if(event.target.classList.contains("note")){
+        event.target.querySelector("i").classList.add("show");
+    }
+});
+document.addEventListener("mouseout",(event)=>{
+    if(event.target.classList.contains("note")){
+        event.target.querySelector("i").classList.remove("show");
+    }
+});
