@@ -14,7 +14,7 @@ body{
 }
 .note-area{
     background-color: #fff;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
     margin: 40px;
