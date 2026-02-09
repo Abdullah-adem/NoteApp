@@ -14,6 +14,54 @@ const hideNoteArea = ()=>{
     noteText.style = 'display:none';
     noteArea.classList.remove('note-now');
 }
+
+const addNoteToLocalStorage = (note) => {
+ if (note.length< 0){
+    return;
+ }
+ let oldNote;
+
+ if (localStorage.getItem(notes) === null){
+    oldNote=[];
+
+ }else{
+    oldNote =JSON.parse(localStorage.getItem("notes"));
+ }
+
+ oldNote.push(note);
+
+ localStorage.setItem('notes', JSON.stringify(oldNote));
+}
+
+
+
+
+const getNoteFromLocalStorage = () => {
+
+    let oldNote;
+
+ if (localStorage.getItem("notes") === null){
+    oldNote=[];
+    
+ }else{
+    oldNote =JSON.parse(localStorage.getItem('notes'));
+ }
+ oldNote.forEach(note => {
+     notes.innerHTML +=
+    `  <div class="note">
+            <h1 class="title-text" id="title-text">${note[0]}</h1>
+            <p class="note-blog">${note[1]}</p>
+            <i class="fa fa-trash"></i>
+        </div>`;
+ });
+
+
+
+}
+
+
+document.addEventListener("DOMContentLoaded",getNoteFromLocalStorage);
+
 const addNote = (t,n) => {
 
     notes.innerHTML +=
@@ -27,21 +75,7 @@ const addNote = (t,n) => {
 
 }
 
-const addNoteToLocalStorage = (note) => {
- if (note.length< 0){
-    return;
- }
- let oldNote;
- if (localStorage.getItem(notes) === null){
-    oldNote=[];
- }else{
-    oldNote =JSON.parse(localStorage.getItem("notes"));
- }
 
- oldNote.push(note);
-
- localStorage.setItem('notes', JSON.stringify(oldNote));
-}
 
 noteArea.addEventListener("click", showNoteArea);
 
